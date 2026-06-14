@@ -12,7 +12,8 @@ jobs:
   release:
     # macos-13 = Intel runner，用于构建 x64 DMG
     # macos-latest = ARM (M1)，不兼容 x64 打包
-    runs-on: macos-13
+    # macos-latest (ARM) 可用性远好于 macos-13，electron-builder 支持交叉编译 x64
+    runs-on: macos-latest
 
     permissions:
       contents: write
