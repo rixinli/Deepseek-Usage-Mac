@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "design-agent": {
+      "command": "/Users/louis/works/Ai-agents/Desiger-Agent/design-agent/run.sh",
+      "args": []
+    },
+    "frontend-agent": {
+      "command": "/Users/louis/works/Ai-agents/Frontend-Agent/frontend-agent/run.sh",
+      "args": []
+    },
+    "project-file-manager": {
+      "command": "/Users/louis/works/Ai-agents/Manager-Agent/project-file-manager/run.sh",
+      "args": []
+    },
+    "network-efficiency-agent": {
+      "command": "/Users/louis/works/Ai-agents/Network-Efficiency-Agent/network-efficiency-agent/run.sh",
+      "args": []
+    },
+    "ops-dev-agent": {
+      "command": "//Users/louis/works/Ai-agents/Ops-Dev-Agent/ops-dev-agent/run.sh",
+      "args": []
+    }
+  }
+}

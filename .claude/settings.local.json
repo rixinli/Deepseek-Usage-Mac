@@ -1,0 +1,6 @@
+{
+  "enabledMcpjsonServers": [
+    "design-agent"
+  ],
+  "enableAllProjectMcpServers": true
+}

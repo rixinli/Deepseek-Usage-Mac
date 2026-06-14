@@ -1,0 +1,21 @@
+# 敏感信息
+.env
+
+# Node.js / Electron
+node_modules/
+out/
+release/
+*.log
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 测试
+coverage/
