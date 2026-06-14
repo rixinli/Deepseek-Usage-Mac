@@ -1,0 +1,55 @@
+name: Build & Release
+
+on:
+  push:
+    tags: ['v*']
+
+defaults:
+  run:
+    working-directory: deepseek-api-monitor
+
+jobs:
+  release:
+    # macos-13 = Intel runner，用于构建 x64 DMG
+    # macos-latest = ARM (M1)，不兼容 x64 打包
+    runs-on: macos-13
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: deepseek-api-monitor/package-lock.json
+
+      - run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Package DMG
+        run: npx electron-builder --mac dmg --x64
+
+      - name: Upload DMG to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: deepseek-api-monitor/release/*.dmg
+          body: |
+            ## 安装
+            1. 下载 DMG，双击打开，拖拽到 Applications
+            2. 首次打开：**右键 → 打开**（未签名应用，需绕过 Gatekeeper）
+
+            ## 技术栈
+            Electron 33 · React 19 · TypeScript · Tailwind CSS · Zustand
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
